@@ -57,11 +57,11 @@
 \renewcommand{\shortauthors}{Bhowmick et al.}
 
 \begin{abstract}
-Students and young adults managing mental health challenges such as ADHD, anxiety, and depression often struggle not with planning or organization, but with initiation due to a sense of overwhelm from having too much to do: the moment of beginning an already-understood task. Through needfinding interviews with seven participants, we found that existing productivity tools have not addressed the core issues, which is initiation and helping overcome the sense of overwhelm.
+Students and young adults managing mental health challenges such as ADHD, anxiety, and depression often struggle not with planning or organization, but with initiation due to a sense of overwhelm from having too much to do: the moment of beginning an already-understood task. Through needfinding interviews with seven participants, we found that existing productivity tools have not addressed the core issues, which are lack of initiation and fear of overwhelm.
 
 We designed and built Anchor, a mobile-first web application that consolidates scattered obligations from Google Calendar and Gmail into a single, bounded daily plan of three tasks, each paired with a small, concrete first step. Anchor closes the loop from a morning briefing through a focus timer to an evening reflection, with unfinished work automatically carried forward rather than lost.
 
-We iterated across low- and high-fidelity prototypes, incorporating feedback from twelve participants across paper and Figma prototype testing, before implementing a functional version using React, Supabase, and the Google Calendar and Gmail APIs. This paper documents our full design process from needfinding through evaluation and outlines our planned next iteration.
+We iterated in low- and high-fidelity prototypes, incorporating feedback from 12 participants in paper and Figma prototype testing, before implementing a functional version using React, Supabase, and the Google Calendar and Gmail APIs. This document documents our full design process from needfinding through evaluation and outlines our planned next iteration.
 \end{abstract}
 
 \begin{CCSXML}
@@ -100,7 +100,7 @@ We iterated across low- and high-fidelity prototypes, incorporating feedback fro
 \maketitle
 
 \section{Introduction}
-For many students and young professionals who experience challenges such as ADHD, anxiety, or depression, the hardest part of completing tasks is often not the work itself, but figuring out where to start. Our needfinding revealed two interconnected barriers: overwhelm from having too much to do and difficulty initiating tasks. One participant had every prerequisite for a task ready for a year—number found, script written, insurance card saved—but still could not begin because the task had no clear starting or ending point. Another had no trouble finishing tasks once he started working, but the mental effort and preparation required often caused him to delay until the last minute. Across participants, scattered obligations across email, calendars, and chats, combined with ambiguous task requirements, made it difficult to determine what to prioritize or do first, increasing feelings of anxiety and overwhelm.
+For many students and young professionals who experience challenges such as ADHD, anxiety, or depression, the hardest part of completing tasks is often not the work itself, but figuring out where to start. Our needfinding revealed two interconnected barriers: overwhelm from having too much to do and difficulty initiating tasks. One participant had every prerequisite for a task ready for a year—number found, script written, insurance card saved—but still could not start because the task had no clear starting or ending point. Another had no trouble finishing tasks once he started working, but the mental effort and preparation required often caused him to delay until the last minute. Across participants, scattered obligations across emails, calendars, and chats, combined with ambiguous task requirements, made it difficult to determine what to prioritize or do first, increasing feelings of anxiety and overwhelm.
 
 This paper introduces Anchor, an application designed to reduce this cognitive overload and make starting feel more manageable. Rather than asking users to organize an endless list of responsibilities themselves, Anchor pulls scattered obligations into one place and operates on a simple, grounded philosophy: steady the day by limiting daily focus to three core tasks, or what we call “Anchors.” By narrowing an overwhelming set of responsibilities into a small number of priorities and identifying a concrete first step for each, Anchor aims to reduce cognitive overload, break through initiation paralysis, and turn stressful, chaotic work sessions into calmer, more intentional progress.
 
@@ -110,7 +110,7 @@ Anchor was developed by a five-person team, Hi-Five Senses, over six weeks in UC
 We are redesigning the experience of starting and completing work for people with mental health challenges such as ADHD, anxiety, or depression. Our focus is on how people regulate focus, motivation, and emotions through virtual systems, physical spaces, and personal routines, and how these supports can be improved to reduce overwhelm and make progress feel more achievable.
 
 \subsection{Participants and POV Statements}
-We recruited non-CS 160 students and recent graduates with ADHD, anxiety, depression, or similar mental health challenges. These participants were chosen because they regularly navigate demanding work and school responsibilities while managing their mental health, which makes them representative of the users we hope to support. We finished observation and interview sessions: a high school student with a busy schedule, a fourth-year math major student with ADHD and depression, a recent graduate and new software engineer with self-diagnosed anxiety, a recent electrical engineering graduate with anxiety, a senior with OCPD and ADHD in a dual-degree program, a fourth-year environmental economics student juggling coursework, research, and an internship; and a senior balancing two remote jobs and a class.
+We recruited non-CS 160 students and recent graduates with ADHD, anxiety, depression, or similar mental health challenges. These participants were chosen because they regularly navigate demanding work and school responsibilities while managing their mental health, which makes them representative of the users we hope to support. We finished observation and interview sessions: a high school student with a busy schedule, a fourth-year math major student with ADHD and depression, a recent graduate and new software engineer with self-diagnosed anxiety, a recent electrical engineering graduate with anxiety, a senior with OCD and ADHD in a dual-degree program, a fourth-year environmental economics student juggling coursework, research, and an internship; and a senior balancing two remote jobs and a class.
 
 \subsection{Methods}
 During each session, we observed how participants began working on a real work or study task in their natural environment. Some participants allowed us to observe and take notes on their home workspace. We then conducted semi-structured interviews about their productivity habits, challenges with starting and completing tasks, sources of stress, and strategies and tools they use to stay organized. We paid particular attention to workarounds, breakdowns, current methods, and why those methods failed.
@@ -126,7 +126,7 @@ A pattern emerged as we synthesized point-of-view statements across the seven se
   \item People create urgency and fallbacks. Participants created fake deadlines (``I will call at three'') and regard their social circle as a motivational engine.
 \end{enumerate}
 
-From these sessions, we synthesized thirteen "How Might We" questions spanning distraction reduction, task breakdown, cognitive overload, and social accountability. Two questions proved most generative for our eventual design direction: how might we lower the barrier to starting unscheduled, open-ended tasks with no clear start or end, and how might we help students reduce the cognitive overload that precedes procrastination in the first place.
+From these sessions, we synthesized thirteen "How Might We" questions spanning distraction reduction, task breakdown, cognitive overload, and social accountability. Two questions have proved most generative for our eventual design direction: how might we lower the barrier to starting unscheduled, open-ended tasks with no clear start or end, and how might we help students reduce the cognitive overload that precedes procrastination in the first place.
 
 \section{Design Space and Concept Selection}
 Each team member independently selected two rough ideas that they wanted to explore further. Using divergent brainstorming techniques, we expanded each concept into 2--3 distinct variations. Our brainstorming explored different interaction modalities, including web and mobile applications, browser extensions, wearable smart glasses, AR/VR, and physical interfaces.
@@ -134,7 +134,7 @@ Each team member independently selected two rough ideas that they wanted to expl
 \subsection{Funneling to Three Realizations}
 We funneled these distinct ideas into 3 candidate realizations, drew concept sketches, and explicitly listed pros and cons:
 \begin{enumerate}
-  \item Users can select the apps that they think are distracting. The app button and interfaces of the rest of the apps keep colorful, but the longer the users stay on the distraction apps, the grayer the interfaces and the app buttons become.
+  \item Users can select the apps which are  distracting to them. The app button and interfaces of the rest of the apps remain colorful, but the longer the users stay on the distraction apps, the grayer the interfaces and the app buttons become.
 
   \begin{figure}[!htbp]
     \centering
@@ -155,7 +155,7 @@ We funneled these distinct ideas into 3 candidate realizations, drew concept ske
     \label{fig:funnel-briefing}
   \end{figure}
 
-  \item An accountability companions app, that allows users to set both personal and shared goals with their friends, track task progress, send encouragement, maintain shared streaks, and stay accountable. Through an optional AR mode, users can also study alongside a friend or accountability buddy in a shared virtual workspace, creating a stronger sense of co-presence while working.
+  \item An accountability companions application, that allows users to set both personal and shared goals with their friends, track task progress, send encouragement, maintain shared streaks, and stay accountable. Through an optional AR mode, users can also study alongside a friend or accountability buddy in a shared virtual workspace, creating a stronger sense of co-presence while working.
 
   \begin{figure}[!htbp]
     \centering
